@@ -247,6 +247,25 @@ define Device/tl-wr840n-v5
 endef
 TARGET_DEVICES += tl-wr840n-v5
 
+define Device/tl-wr840n-v6
+  DTS := TL-WR840NV6
+  IMAGE_SIZE := 3968k
+  DEVICE_TITLE := TP-Link TL-WR840N v6
+  TPLINK_FLASHLAYOUT := 4Mmtk
+  TPLINK_HWID := 0x08400006
+  TPLINK_HWREV := 0x1
+  TPLINK_HWREVADD := 0x6
+  TPLINK_HVERSION := 3
+  KERNEL := $(KERNEL_DTB)
+  KERNEL_INITRAMFS := $(KERNEL_DTB) | tplink-v2-header -e
+  IMAGES += tftp-recovery.bin
+  IMAGE/factory.bin := tplink-v2-image -e
+  IMAGE/sysupgrade.bin := tplink-v2-image -s -e | append-metadata | \
+	check-size $$$$(IMAGE_SIZE)
+  IMAGE/tftp-recovery.bin := pad-extra 64k | $$(IMAGE/factory.bin)
+endef
+TARGET_DEVICES += tl-wr840n-v6
+
 define Device/tl-wr841n-v13
   $(Device/tplink)
   DTS := TL-WR841NV13
