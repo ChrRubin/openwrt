@@ -26,12 +26,11 @@
 	};
 
 	keys {
-		compatible = "gpio-keys-polled";
-		poll-interval = <20>;
+		compatible = "gpio-keys";
 
 		reset {
 			label = "reset";
-			gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio 38 GPIO_ACTIVE_LOW>;
 			linux,code = <KEY_RESTART>;
 		};
 	};
@@ -41,22 +40,22 @@
 
 		lan {
 			label = "tl-wr840n-v6:green:lan";
-			gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio 39 GPIO_ACTIVE_LOW>;
 		};
 
 		wlan {
 			label = "tl-wr840n-v6:green:wlan";
-			gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio 44 GPIO_ACTIVE_LOW>;
 		};
 
 		led_power: orange {
 			label = "tl-wr840n-v6:orange:wan";
-			gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
+			gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
 		};
 
 		green {
 			label = "tl-wr840n-v6:green:wan";
-			gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio 40 GPIO_ACTIVE_LOW>;
 		};
 	};
 };
